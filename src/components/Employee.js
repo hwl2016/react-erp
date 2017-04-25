@@ -46,6 +46,8 @@ export default class Employee extends React.Component {
 		var tar = e.target;
 		var txt = $(tar).text();
 		console.log(txt);
+
+		this.refs.Button.haha();	//在父组件中调用子组件的方法
 	}
 
 	btnHandle(e) {
@@ -73,7 +75,7 @@ export default class Employee extends React.Component {
 		return (
 			<div>
 				<Abc handle={this.abcHandle} user={ this.state.user } />
-				<Button handle={ this.btnHandle } handle2={ this.abcHandle } show={ this.state.show }/>
+				<Button ref='Button' handle={ this.btnHandle } handle2={ this.abcHandle } show={ this.state.show }/>
 				{ this.state.show ? <Table employeeList={ this.state.employeeList }/> : ( <div>暂无数据</div> ) }
 				{/*<div><DateSelect /></div>*/}
 			</div>

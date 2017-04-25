@@ -11,15 +11,25 @@ import React, { Component } from 'react';
 class Button extends Component {
 	constructor(props) {
 		super(props);
+
+		this.state = {
+			number: true
+		}
+	}
+
+	haha() {
+		this.setState({
+			number: !this.state.number
+		})
 	}
 
 	render() {
 		return (
 			<div>
 				<button onClick={ this.props.handle }>{ this.props.show ? '显示' : '隐藏'}</button>
-				<button onClick={ this.props.handle }>1</button>
-				<button onClick={ this.props.handle }>2</button>
-				<button onClick={ this.props.handle }>3</button>
+				<button onClick={ this.props.handle }>{this.state.number ? 1 : '一'}</button>
+				<button onClick={ this.props.handle }>{this.state.number ? 2 : '二'}</button>
+				<button onClick={ this.props.handle }>{this.state.number ? 3 : '三'}</button>
 			</div>)
 	}
 }
