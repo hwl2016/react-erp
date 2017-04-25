@@ -1,11 +1,13 @@
-export const Add = () => {
+export const Add = (txt) => {
 	return {
-		type: 'INCREAMENT'
+		type: 'INCREAMENT',
+		txt
 	}
 }
 
-export const Minus = () => {
+export const Minus = (txt) => {
 	return {
-		type: 'DECREAMENT'
+		type: 'DECREAMENT',
+		txt
 	}
 }

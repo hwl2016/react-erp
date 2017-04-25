@@ -28,7 +28,7 @@ console.log(store);
 
 //发布一个订阅  每当 dispatch 的时候 会触发
 store.subscribe(() => {
-	console.log(store.getState())
+	console.log(`state: ${store.getState()}`, 'subscribe中打印')
 });
 
 // store.dispatch({ type: 'INCREAMENT' });

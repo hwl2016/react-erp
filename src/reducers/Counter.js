@@ -1,4 +1,9 @@
-export default function CounterReducer(state = 0, action) {
+const s = {
+	txt: undefined,
+	value: 50
+}
+
+export default function CounterReducer(state = 50, action) {
 	switch(action.type) {
 		case 'INCREAMENT': 
 			return state + 1;
