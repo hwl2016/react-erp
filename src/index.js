@@ -9,6 +9,8 @@ import CounterReducer from './reducers/Counter';
 import Employee from './components/Employee';
 import Counter from './components/Counter';
 
+import './style.css';
+
 //reducer 函数
 // function counter(state = 0, action) {
 // 	switch(action.type) {

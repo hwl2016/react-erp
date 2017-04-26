@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "node server.js",
-    "dev": "webpack-dev-server --hot --config ./webpack.config.js",
-    "build": "webpack --config ./webpack.config.js  --progress --display-modules --display-reasons --colors"
+    "dev": "webpack-dev-server --hot --config ./webpack.config.dev.js",
+    "build": "webpack --config ./webpack.config.build.js  --progress --display-modules --display-reasons --colors"
   },
   "repository": {
     "type": "git",
@@ -25,12 +25,12 @@
     "babel-plugin-import": "^1.1.1",
     "babel-preset-env": "^1.4.0",
     "babel-preset-react": "^6.24.1",
-    "css-loader": "^0.28.0",
+    "css-loader": "^0.26.1",
     "ejs-loader": "^0.3.0",
     "express-generator": "^4.15.0",
-    "extract-text-webpack-plugin": "^2.1.0",
+    "extract-text-webpack-plugin": "^1.0.1",
     "html-webpack-plugin": "^2.28.0",
-    "style-loader": "^0.16.1",
+    "style-loader": "^0.13.1",
     "webpack": "^1.14.0",
     "webpack-dev-server": "^1.16.3"
   },

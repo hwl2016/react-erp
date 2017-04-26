@@ -1,6 +1,6 @@
 var path = require('path');
 var htmlWebpackPlugin = require('html-webpack-plugin');
-// var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
 	entry: {
@@ -14,16 +14,16 @@ module.exports = {
 	module: {
 		loaders: [
 			{
-				test: /\.css$/,
-				loader: 'style!css'
-			},
-			{
 				test: /[\.jsx|\.js]$/,
 				loader: 'babel-loader',
 				exclude: /node_modules/,
 				query: {
 					presets: ['env', 'react']
 				}
+			},
+			{
+				test: /\.css$/,
+				loader: ExtractTextPlugin.extract('style', 'css')
 			}
 		]
 	},
@@ -34,7 +34,7 @@ module.exports = {
 	        filename: 'index.html',
 	        hash: true
 		}),
-		// new ExtractTextPlugin("style.css")
+		new ExtractTextPlugin("css/[name].css")
 	],
 	devServer: {
 	    contentBase: 'dist',
