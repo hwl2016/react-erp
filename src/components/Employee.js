@@ -4,6 +4,7 @@ import React from 'react';
 import Table from './Table';
 import Button from './Button';
 import Abc from './Abc';
+import FetchData from './FetchData';
 // import DateSelect from './DateSelect';
 
 import DataEmployee from '../data/employee';
@@ -48,6 +49,8 @@ export default class Employee extends React.Component {
 		console.log(txt);
 
 		this.refs.Button.haha();	//在父组件中调用子组件的方法
+
+	// this.setState({});
 	}
 
 	btnHandle(e) {

@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, hashHistory } from 'react-router';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+
+import { createLogger } from 'redux-logger';
+import thunk from 'redux-thunk';
 
 import CounterReducer from './reducers/Counter';
 
@@ -23,14 +26,20 @@ import './style.css';
 // 	}
 // }
 
+const logger = createLogger();
+
 //创建reducer store
-let store = createStore(CounterReducer);
+//添加中间件
+let store = createStore(
+	CounterReducer,
+	applyMiddleware(thunk, logger)
+);
 
 console.log(store);
 
 //发布一个订阅  每当 dispatch 的时候 会触发
 store.subscribe(() => {
-	console.log(`state: ${store.getState()}`, 'subscribe中打印')
+	// console.log(`state: ${store.getState()}`, 'subscribe中打印')
 });
 
 // store.dispatch({ type: 'INCREAMENT' });

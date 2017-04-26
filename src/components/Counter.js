@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import * as actions from '../actions/Counter';
+import FetchData from './FetchData';
+
+import * as actions from '../actions';
 
 class Counter extends Component {
 	constructor(props) {
 		super(props);
-		console.log('--------------props------------')
-		console.log(props)
-		console.log('--------------props------------')
+		// console.log('--------------props------------')
+		// console.log(props)
+		// console.log('--------------props------------')
 	}
 
 	handle() {
@@ -23,6 +25,8 @@ class Counter extends Component {
 				<button onClick={ () => this.props.dispatch(actions.Add()) }>加</button>
 				<button onClick={ this.handle.bind(this) }>减</button>
 				<p>state: { this.props.cnt }</p>
+				<hr/>
+				<FetchData />
 			</div>
 		)
 	}
@@ -43,7 +47,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 //将组件交给redux 管理
 export default connect( 
 	( state ) => {
-		console.log(`state:${state}`, 'connect 函数中打印');
+		// console.log(`state:${state}`, 'connect 函数中打印');
 		return {
 			cnt: state,
 			haha: 'haha'
