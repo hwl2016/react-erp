@@ -24,9 +24,8 @@ class Counter extends Component {
 				<h2>加减计数器</h2>
 				<button onClick={ () => this.props.dispatch(actions.Add()) }>加</button>
 				<button onClick={ this.handle.bind(this) }>减</button>
-				<p>state: { this.props.cnt }</p>
+				<p>state: { this.props.cnt.value }</p>
 				<hr/>
-				<FetchData />
 			</div>
 		)
 	}
@@ -50,7 +49,11 @@ export default connect(
 		// console.log(`state:${state}`, 'connect 函数中打印');
 		return {
 			cnt: state,
-			haha: 'haha'
+			haha: 'haha',
+			a: {
+				id: 123,
+				name: 'adsf'
+			}
 		}
 	}
 )(Counter);

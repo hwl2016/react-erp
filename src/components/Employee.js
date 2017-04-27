@@ -7,7 +7,7 @@ import Abc from './Abc';
 import FetchData from './FetchData';
 // import DateSelect from './DateSelect';
 
-import DataEmployee from '../data/employee';
+// import DataEmployee from '../data/employee';
 
 export default class Employee extends React.Component {
 	constructor(props) {
@@ -31,16 +31,16 @@ export default class Employee extends React.Component {
 	componentDidMount() {
 		console.log('componentDidMount');
 
-		// $.get('http://localhost:9000/data/emploee.json')
-		// .then(res => {
-		// 	this.setState({
-		// 		employeeList: res
-		// 	})
-		// })
-
-		this.setState({
-			employeeList: DataEmployee
+		$.get('http://localhost:8000/employee/getAll')
+		.then(res => {
+			this.setState({
+				employeeList: res
+			})
 		})
+
+		// this.setState({
+		// 	employeeList: DataEmployee
+		// })
 	}
 
 	abcHandle(e) {

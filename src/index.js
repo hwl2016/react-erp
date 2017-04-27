@@ -7,10 +7,12 @@ import { Provider } from 'react-redux';
 import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
 
-import CounterReducer from './reducers/Counter';
+// import CounterReducer from './reducers/Counter';
+import MyReducer from './reducers';
 
 import Employee from './components/Employee';
 import Counter from './components/Counter';
+import FetchData from './components/FetchData';
 
 import './style.css';
 
@@ -31,7 +33,7 @@ const logger = createLogger();
 //创建reducer store
 //添加中间件
 let store = createStore(
-	CounterReducer,
+	MyReducer,
 	applyMiddleware(thunk, logger)
 );
 
@@ -51,6 +53,7 @@ ReactDOM.render(
 		<Router history={hashHistory}>
 		    <Route path="/" component={Employee}/>
 		    <Route path="/counter" component={Counter}/>
+		    <Route path="/fetch" component={FetchData}/>
 		</Router>
 	</Provider>
 	, document.getElementById('box') );

@@ -1,14 +1,14 @@
-export const Add = (txt) => {
+export const Add = (value) => {
 	return {
 		type: 'INCREAMENT',
-		txt
+		value
 	}
 }
 
-export const Minus = (txt) => {
+export const Minus = (value) => {
 	return {
 		type: 'DECREAMENT',
-		txt
+		value
 	}
 }
 
@@ -28,11 +28,11 @@ export const receivePosts = (dept, json) => {
 	}
 }
 
-const ajax = (type) => (dispatch, getState) => {
+const ajax = (dept) => (dispatch, getState) => {
 	dispatch(requestPosts(dept));
-	return fetch(`http://localhost:9002/${dept}.json`)
+	return fetch(`http://localhost:8000/${dept}/getAll`)
 	.then(resp => resp.json())
-	.then(json => dispatch(receivePosts(dept, json)))
+	.then( json => dispatch( receivePosts( dept, JSON.stringify(json) ) ) )
 }
 
 export const fetchData = dept => (dispatch, getState) => {

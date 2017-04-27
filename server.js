@@ -4,38 +4,62 @@ var server = express();
 var path = require('path');
 var http = require('http');
 
-// 网站图标
-// var favicon = require('serve-favicon');
-// server.use(favicon(path.join(__dirname + '/public/favicon.png')));
+var fs = require('fs');
 
 // 加载静态文件路由
-// server.use('/static', express.static(path.join(__dirname + '/public')));
-// server.use('/release', express.static(path.join(__dirname + '/dist')));
-server.use('/data', express.static(path.join(__dirname + '/data')));
+server.use('/', express.static(path.join(__dirname + '/public')));
 
 // CORS, 跨域资源共享
-// server.all( '*', function ( req, res, next ) {
-//   res.set( {
-//     'Access-Control-Allow-Origin': '*',
-//     'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
-//     'Access-Control-Max-Age': '3600',
-//     'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, Cookie'
-//     // 'Access-Control-Allow-Headers': '*'
-//   } );
-//   next();
-// });
+server.all( '*', function ( req, res, next ) {
+  res.set( {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
+    'Access-Control-Max-Age': '3600',
+    'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, Cookie, send'
+    // 'Access-Control-Allow-Headers': '*'
+  } );
+  // res.send('all method invoke');
+  next();
+});
 
-var allowCrossDomain = function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:63342');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    res.header('Access-Control-Allow-Credentials','true');
-    next();
-};
-server.use(allowCrossDomain);
+server.get('/', function(req, res) {
+	var indexPath = './public/index.html';
+	fs.readFile(indexPath, function(err, result) {
+		if(!err) {
+			res.send(result.toString());
+		}
+	})
+})
 
-// 加载模拟后台接口的逻辑路由
-// server.all(require('./core/simulator').sysRouters(server));
+var cb0 = function (req, res, next) {
+  console.log('CB0');
+  next();
+}
+
+var cb1 = function (req, res, next) {
+  console.log('CB1');
+  next();
+}
+
+var cb2 = function (req, res) {
+  res.send('Hello from C!');
+}
+
+server.get('/example/c', [cb0, cb1, cb2]);
+
+//下载文件
+server.get('/download', function(req, res) {
+	res.download('./package.json');
+});
+
+server.get('/:role/getAll', (req, res) => {
+	fs.readFile(`./public/data/${req.params.role}.json`, (err, result) => {
+		if(!err) {
+			res.json( JSON.parse(result.toString()) );
+		}
+	})
+})
+
 
 // 错误处理
 server.on('clientError', (err, socket) => {
@@ -43,3 +67,4 @@ server.on('clientError', (err, socket) => {
 });
 
 http.createServer(server).listen(8000);
+
