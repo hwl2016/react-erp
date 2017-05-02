@@ -4,7 +4,7 @@ var htmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
-	devtool: false,
+	devtool: 'cheap-module-source-map',
 	entry: {
 		main: './src/index.js',
 		// 第三方库

@@ -25,6 +25,7 @@ class Counter extends Component {
 				<button onClick={ () => this.props.dispatch(actions.Add()) }>加</button>
 				<button onClick={ this.handle.bind(this) }>减</button>
 				<p>state: { this.props.cnt.value }</p>
+				<p>haha: { RELEASE ? 'true' : 'false' } </p>
 				<hr/>
 			</div>
 		)
